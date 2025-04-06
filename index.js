@@ -21,3 +21,23 @@ odkazy.forEach((link) => {
     document.querySelector("#cara3").classList.remove("caraC");
   });
 });
+
+//logo a nazev do titulku při skrolovani
+
+if (window.innerWidth <= 800) {
+  const logo = document.querySelector(".logo");
+  const logoS = document.querySelector(".logoS");
+  const titleS = document.querySelector(".titleS");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      logo?.classList.add("hidden");       // schovej velké logo
+      logoS?.classList.add("visible");     // ukaž malé logo
+      titleS?.classList.add("visible");    // ukaž název
+    } else {
+      logo?.classList.remove("hidden");
+      logoS?.classList.remove("visible");
+      titleS?.classList.remove("visible");
+    }
+  });
+}
