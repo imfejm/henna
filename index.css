@@ -20,19 +20,19 @@ body {
   radial-gradient(circle at 20% 30%, #ffffff33, transparent 50%),
   radial-gradient(circle at 80% 70%, #ffffff33, transparent 60%);
 background-blend-mode: overlay;*/
-background: radial-gradient(ellipse at top left, 
-  #13b5a8 0%, 
-  #13b5a8 30%,   /* drží ji déle, takže bude viditelnější */
-  #fff1c186 60%, 
-  #ffffff 100%);
-
+  background: radial-gradient(
+    ellipse at top left,
+    #13b5a8 0%,
+    #13b5a882 30%,
+    #fff1c1c4 70%
+  );
 
   overflow-x: hidden; /* Zakáže horizontální posuvník */
   width: 100vw; /* Zabrání roztažení */
   font-family: comfortaa;
   font-weight: 300;
   font-size: 20px;
-  color:#51090a;
+  color: #51090a;
   position: relative;
 }
 a {
@@ -402,7 +402,7 @@ a.nav-link {
   width: 70vw;
   height: 60vh;
   position: absolute;
-  padding: 5% 0 10% 5%;
+  padding: 5% 5% 10% 5%;
   color: #fff3dc;
 }
 h1 {
@@ -475,7 +475,6 @@ h2 {
 }
 
 /*nabizim*/
-.nabizim{
+.nabizim {
   padding: 4%;
-  
 }
