@@ -41,3 +41,35 @@ if (window.innerWidth <= 800) {
     }
   });
 }
+//linka při skrolování
+const line = document.querySelector('.line');
+const wrapper = document.querySelector('.timeline');
+
+function updateLineHeight() {
+  const rect = wrapper.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  if (rect.top < windowHeight && rect.bottom > 0) {
+    const visibleHeight = Math.min(windowHeight, rect.bottom) - Math.max(0, rect.top);
+    const totalHeight = rect.height;
+
+    if (totalHeight > 0) {
+      const percentVisible = visibleHeight / totalHeight;
+      const height = percentVisible * 100;
+      line.style.height = `${height}%`;
+    }
+  } else if (rect.top >= windowHeight) {
+    line.style.height = `0%`;
+  } else if (rect.bottom <= 0) {
+    line.style.height = `100%`;
+  }
+}
+
+window.addEventListener('scroll', updateLineHeight);
+window.addEventListener('resize', updateLineHeight);
+updateLineHeight(); // inicializace
+
+//test
+//const height = percentVisible * 100;
+//console.log("Výška linky:", height);
+//line.style.height = `${height}%`;

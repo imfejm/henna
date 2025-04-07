@@ -71,7 +71,7 @@ body {
   grid-template-rows: auto 60px auto 60px auto 60px;
   padding-top: 60px;
   align-items: center;
-  justify-items: center;
+
   position: relative;
   max-width: 1300px; /* Nastaví maximální šířku webu */
 }
@@ -496,36 +496,101 @@ h2 {
 .uvodem {
   grid-area: uvodem;
   padding: 0 4% 0 4%;
+  justify-content: center;
 }
 .terka {
   width: 40vw;
-  border-radius: 50%;
-  padding: 4%;
+  border-radius: 40%;
+  padding: 0 4% 4% 4%;
   float: left;
 }
 .uvodem p {
-  padding: 0 4% 4% 4%;
+  padding: 0 4% 2% 4%;
   line-height: 1.3;
+  margin: 0;
 }
 .interval2 {
   grid-area: interval2;
 }
 /*nabizim*/
 .nabizim {
-  width: 80vw;
-  align-self: center;
-  padding: 2% 8% 2% 8%;
-  /*background: linear-gradient(to right, #13b5a866, #fff1c164, #fff1c1),
-    radial-gradient(circle at 20% 30%, #ffffff33, transparent 50%),
-    radial-gradient(circle at 80% 70%, #ffffff33, transparent 60%);
-  background-blend-mode: overlay;*/
-  background: radial-gradient(circle at 30% 40%, #fff1c1cc, transparent 70%),
-    radial-gradient(circle at 70% 60%, #13b5a880, transparent 70%),
-    linear-gradient(to right, #13b5a8, #fff1c164, #fff1c1);
-  background-blend-mode: lighten;
-
+  grid-area: nabizim;
   line-height: 1.3;
+  padding: 0 4% 0 4%;
 }
-.interval3 {
-  grid-area: interval3;
+
+.festival,
+.barva {
+  border-radius: 3px 30px 3px 30px;
+}
+.tehu {
+  border-radius: 30px 3px 30px 3px;
+  align-self: right;
+}
+.timeline {
+  position: relative; /* DŮLEŽITÉ – aby line-wrapper měl k čemu být absolutní */
+  display: grid;
+  grid-template-columns: 1fr 4px 1fr;
+  gap: 40px;
+  min-height: 800px; /* nebo kolik je třeba */
+}
+
+.line-wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  z-index: 1;
+}
+
+.line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(to bottom, #13b5a8, #fff1c164, #fff1c1, #13b5a8);
+  transition: height 0.3s ease-out;
+  z-index: 2;
+}
+
+.timeline-item {
+  display: contents;
+}
+
+.timeline-item .content {
+  
+  background: #fff1c1;
+  padding: 20px;
+  line-height: 1.6;
+  justify-content: center;
+  word-break: break-word;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.timeline-item.left .content {
+  grid-column: 1;
+  text-align: right;
+ 
+  border-radius: 30px 3px 30px 3px;
+}
+
+.timeline-item.right .content {
+  grid-column: 3;
+  text-align: left;
+
+  border-radius: 3px 30px 3px 30px;
+}
+
+.dot {
+  grid-column: 2;
+  width: 16px;
+  height: 16px;
+  background-color: #13b5a8;
+  border-radius: 50%;
+  justify-self: center;
+  align-self: center;
 }
