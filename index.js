@@ -47,27 +47,28 @@ const wrapper = document.querySelector('.timeline');
 
 function updateLineHeight() {
   const rect = wrapper.getBoundingClientRect();
+  const scrollTop = window.scrollY || window.pageYOffset;
   const windowHeight = window.innerHeight;
 
-  if (rect.top < windowHeight && rect.bottom > 0) {
-    const visibleHeight = Math.min(windowHeight, rect.bottom) - Math.max(0, rect.top);
-    const totalHeight = rect.height;
+  const elementTop = rect.top + scrollTop;
+  const elementBottom = elementTop + rect.height;
 
-    if (totalHeight > 0) {
-      const percentVisible = visibleHeight / totalHeight;
-      const height = percentVisible * 100;
-      line.style.height = `${height}%`;
-    }
-  } else if (rect.top >= windowHeight) {
-    line.style.height = `0%`;
-  } else if (rect.bottom <= 0) {
-    line.style.height = `100%`;
-  }
+  const scrollPosition = scrollTop + windowHeight;
+
+  const totalScroll = elementBottom - elementTop;
+  const scrolled = scrollPosition - elementTop;
+
+  const percentScrolled = Math.min(Math.max(scrolled / totalScroll, 0), 1);
+
+  line.style.height = `${percentScrolled * 100}%`;
 }
 
 window.addEventListener('scroll', updateLineHeight);
 window.addEventListener('resize', updateLineHeight);
-updateLineHeight(); // inicializace
+updateLineHeight(); // inicializace po načtení
+
+const offset = 100; // nebo 150 – podle potřeby
+const scrollPosition = scrollTop + windowHeight - offset;
 
 //test
 //const height = percentVisible * 100;

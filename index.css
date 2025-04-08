@@ -95,7 +95,7 @@ body {
   left: 0;
   width: 100vw; /* Rozšíří ho na celou šířku */
   height: 60px; /* Nastav pevnou výšku podle potřeby */
-  background: linear-gradient(to right, #13b5a8, #fff1c164);
+  background: linear-gradient(to right, #13b5a8, #fff1c1);
   z-index: 1100;
   display: flex; /* Pokud obsah mizí, pomůže flexbox */
   align-items: center; /* Zarovná obsah vertikálně */
@@ -593,4 +593,5 @@ h2 {
   border-radius: 50%;
   justify-self: center;
   align-self: center;
+  z-index: 3;
 }
