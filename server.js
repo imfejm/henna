@@ -5,12 +5,18 @@ const path = require("path");
 const fs = require("fs");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Tajný token
 const SECRET = "TAJNYTOKEN123";
 
 // Ukládání nahraných obrázků do složky /public/uploads
+
+app.post("/add-post", upload.single("image"), (req, res) => {
+    if (!req.file) {
+      return res.status(400).send("Chybí obrázek.");
+    }
+    
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "public/uploads"),
   filename: (req, file, cb) => {
@@ -70,3 +76,5 @@ app.get("/api/posts", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server běží na http://localhost:${PORT}`);
 });
+
+res.redirect('/admin'); // nebo na stránku s aktuálními příspěvky
