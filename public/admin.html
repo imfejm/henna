@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Přidat aktualitu</title>
+  </head>
+  <body>
+    <h1>Přidat aktualitu</h1>
+    <form id="postForm" enctype="multipart/form-data">
+      <label
+        >Nadpis:<br />
+        <input type="text" name="title" required /> </label
+      ><br /><br />
+      <label
+        >Text:<br />
+        <textarea name="content" required></textarea></label
+      ><br /><br />
+      <label
+        >Fotka (volitelné):<br />
+        <input type="file" name="image" /> </label
+      ><br /><br />
+      <button type="submit">Odeslat</button>
+    </form>
+
+    <div id="vysledek"></div>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get("access");
+
+      document
+        .getElementById("postForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.target);
+          formData.append("token", token);
+
+          const res = await fetch("/add-post", {
+            method: "POST",
+            body: formData,
+          });
+
+          const text = await res.text();
+          document.getElementById("vysledek").innerText = text;
+          e.target.reset();
+        });
+    </script>
+  </body>
+</html>

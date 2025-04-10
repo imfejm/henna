@@ -1,0 +1,17 @@
+body {
+  font-family: sans-serif;
+  padding: 20px;
+  background-color: #fefefe;
+  color: #333;
+}
+
+.aktualita {
+  margin-bottom: 30px;
+}
+
+.aktualita img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 8px;
+}
