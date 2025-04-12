@@ -5,18 +5,13 @@ const path = require("path");
 const fs = require("fs");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 // Tajný token
 const SECRET = "TAJNYTOKEN123";
 
 // Ukládání nahraných obrázků do složky /public/uploads
 
-app.post("/add-post", upload.single("image"), (req, res) => {
-    if (!req.file) {
-      return res.status(400).send("Chybí obrázek.");
-    }
-    
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "public/uploads"),
   filename: (req, file, cb) => {
@@ -77,4 +72,34 @@ app.listen(PORT, () => {
   console.log(`Server běží na http://localhost:${PORT}`);
 });
 
-res.redirect('/admin'); // nebo na stránku s aktuálními příspěvky
+// 🟠 Mazání aktuality
+app.post("/delete-post", (req, res) => {
+  const { index, token } = req.body;
+
+  if (token !== SECRET) return res.status(403).send("Neplatný token.");
+
+  const filePath = "aktuality.json";
+  if (!fs.existsSync(filePath))
+    return res.status(404).send("Soubor neexistuje.");
+
+  let posts = JSON.parse(fs.readFileSync(filePath));
+
+  if (index < 0 || index >= posts.length) {
+    return res.status(400).send("Neplatný index.");
+  }
+
+  // Smazání obrázku, pokud existuje
+  const imagePath = posts[index].image;
+  if (imagePath) {
+    const fullPath = path.join(__dirname, "public", imagePath);
+    if (fs.existsSync(fullPath)) {
+      fs.unlinkSync(fullPath);
+    }
+  }
+
+  // Odstranění příspěvku
+  posts.splice(index, 1);
+  fs.writeFileSync(filePath, JSON.stringify(posts, null, 2));
+
+  res.send("Aktualita smazána.");
+});

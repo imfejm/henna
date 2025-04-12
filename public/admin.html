@@ -2,48 +2,121 @@
 <html lang="cs">
   <head>
     <meta charset="UTF-8" />
-    <title>Přidat aktualitu</title>
+    <title>Administrace aktualit</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2rem;
+        max-width: 800px;
+        margin: auto;
+      }
+      label {
+        display: block;
+        margin-bottom: 1rem;
+      }
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 0.5rem;
+      }
+      button {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        border-bottom: 1px solid #ccc;
+        padding: 1rem 0;
+      }
+      img {
+        max-width: 200px;
+        display: block;
+        margin-top: 0.5rem;
+      }
+    </style>
   </head>
   <body>
     <h1>Přidat aktualitu</h1>
     <form id="postForm" enctype="multipart/form-data">
-      <label
-        >Nadpis:<br />
-        <input type="text" name="title" required /> </label
-      ><br /><br />
-      <label
-        >Text:<br />
-        <textarea name="content" required></textarea></label
-      ><br /><br />
-      <label
-        >Fotka (volitelné):<br />
-        <input type="file" name="image" /> </label
-      ><br /><br />
+      <label>
+        Nadpis:<br />
+        <input type="text" name="title" required />
+      </label>
+      <label>
+        Text:<br />
+        <textarea name="content" required></textarea>
+      </label>
+      <label>
+        Fotka (volitelné):<br />
+        <input type="file" name="image" />
+      </label>
       <button type="submit">Odeslat</button>
     </form>
 
-    <div id="vysledek"></div>
+    <div id="vysledek" style="margin-top: 1rem; color: green;"></div>
+
+    <h2>Seznam aktualit</h2>
+    <ul id="aktuality-list"></ul>
 
     <script>
       const urlParams = new URLSearchParams(window.location.search);
       const token = urlParams.get("access");
 
-      document
-        .getElementById("postForm")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const formData = new FormData(e.target);
-          formData.append("token", token);
+      document.getElementById("postForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        formData.append("token", token);
 
-          const res = await fetch("/add-post", {
+        const res = await fetch("/add-post", {
+          method: "POST",
+          body: formData,
+        });
+
+        const text = await res.text();
+        document.getElementById("vysledek").innerText = text;
+        e.target.reset();
+        nactiAktuality();
+      });
+
+      async function nactiAktuality() {
+        const res = await fetch("/api/posts");
+        const data = await res.json();
+        const list = document.getElementById("aktuality-list");
+        list.innerHTML = "";
+
+        data.forEach((post, index) => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <strong>${post.title}</strong> (${new Date(post.date).toLocaleString()})<br />
+            ${post.content ? `<p>${post.content}</p>` : ""}
+            ${post.image ? `<img src="${post.image}" alt="foto">` : ""}
+            <br />
+            <button onclick="smazat(${index})">Smazat</button>
+          `;
+          list.appendChild(li);
+        });
+      }
+
+      async function smazat(index) {
+        if (confirm("Opravdu chceš smazat tuto aktualitu?")) {
+          const res = await fetch("/delete-post", {
             method: "POST",
-            body: formData,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ index, token }),
           });
 
           const text = await res.text();
-          document.getElementById("vysledek").innerText = text;
-          e.target.reset();
-        });
+          alert(text);
+          nactiAktuality();
+        }
+      }
+
+      // Načti seznam po načtení stránky
+      nactiAktuality();
     </script>
   </body>
 </html>
+

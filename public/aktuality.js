@@ -15,15 +15,11 @@ fetch("/api/posts")
       item.classList.add("aktualita");
 
       item.innerHTML = `
-        <h3>${post.title}</h3>
-        <p>${post.content}</p>
-        ${
-          post.image
-            ? `<img src="/uploads/${post.image}" alt="obrázek aktuality">`
-            : ""
-        }
-        <hr>
-      `;
+  <h3>${post.title}</h3>
+  <p>${post.content}</p>
+  ${post.image ? `<img src="${post.image}" alt="obrázek aktuality">` : ""}
+  <hr>
+`;
 
       container.appendChild(item);
     });
