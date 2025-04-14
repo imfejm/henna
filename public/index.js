@@ -117,4 +117,9 @@ document.addEventListener("DOMContentLoaded", () => {
       else if (startX - endX > 50) posunGalerii(1);
     });
   }
+  const sipkaVlevo = document.getElementById("arrow-left");
+  const sipkaVpravo = document.getElementById("arrow-right");
+
+  sipkaVlevo?.addEventListener("click", () => posunGalerii(-1));
+  sipkaVpravo?.addEventListener("click", () => posunGalerii(1));
 });
