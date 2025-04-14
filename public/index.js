@@ -1,98 +1,120 @@
-//navigace na klik a krizek z ham
-const tlacitko = document.querySelector("#ham");
-const rozbal = document.querySelector("#menu");
-const odkazy = rozbal.querySelectorAll("a");
+document.addEventListener("DOMContentLoaded", () => {
+  // Navigace na klik a krizek z hamburgeru
+  const tlacitko = document.querySelector("#ham");
+  const rozbal = document.querySelector("#menu");
+  const odkazy = rozbal.querySelectorAll("a");
 
-tlacitko.addEventListener("click", () => {
-  rozbal.classList.toggle("hidden");
+  tlacitko?.addEventListener("click", () => {
+    rozbal.classList.toggle("hidden");
 
-  document.querySelector("#cara1").classList.toggle("caraA");
-  document.querySelector("#cara2").classList.toggle("caraB");
-  document.querySelector("#cara3").classList.toggle("caraC");
-});
-// Zavření menu po kliknutí na jakýkoli odkaz
-odkazy.forEach((link) => {
-  link.addEventListener("click", () => {
-    rozbal.classList.add("hidden"); // Skryje menu
-
-    // Vrátí čáry do původní polohy (křížek zpět na hamburger)
-    document.querySelector("#cara1").classList.remove("caraA");
-    document.querySelector("#cara2").classList.remove("caraB");
-    document.querySelector("#cara3").classList.remove("caraC");
+    document.querySelector("#cara1")?.classList.toggle("caraA");
+    document.querySelector("#cara2")?.classList.toggle("caraB");
+    document.querySelector("#cara3")?.classList.toggle("caraC");
   });
-});
 
-// Výběr potřebných prvků z DOMu
-const line = document.querySelector('.line');            // Čára v časové ose
-const wrapper = document.querySelector('.timeline');     // Celý blok časové osy
-const dots = document.querySelectorAll('.dot');          // Všechny tečky na ose
+  odkazy.forEach((link) => {
+    link.addEventListener("click", () => {
+      rozbal.classList.add("hidden");
+      document.querySelector("#cara1")?.classList.remove("caraA");
+      document.querySelector("#cara2")?.classList.remove("caraB");
+      document.querySelector("#cara3")?.classList.remove("caraC");
+    });
+  });
 
-// Prvky pro logo a název (pro mobilní zobrazení)
-const logo = document.querySelector(".logo");            // Velké logo
-const logoS = document.querySelector(".logoS");          // Malé logo
-const titleS = document.querySelector(".titleS");        // Textový název
+  // Časová osa
+  const line = document.querySelector(".line");
+  const wrapperTimeline = document.querySelector(".timeline");
+  const dots = document.querySelectorAll(".dot");
+  const logo = document.querySelector(".logo");
+  const logoS = document.querySelector(".logoS");
+  const titleS = document.querySelector(".titleS");
 
-// Funkce, která se spouští při scrollování i při změně velikosti okna
-function onScroll() {
-  // Informace o pozici a velikosti časové osy
-  const rect = wrapper.getBoundingClientRect();
-  const windowHeight = window.innerHeight;
-  const scrollTop = window.scrollY || window.pageYOffset;
-  const elementTop = scrollTop + rect.top;     // Horní pozice časové osy na stránce
-  const elementBottom = scrollTop + rect.bottom; // Spodní pozice časové osy
-  const totalScroll = elementBottom - elementTop;
-  const currentScroll = scrollTop + windowHeight - elementTop;
+  function onScroll() {
+    const rect = wrapperTimeline?.getBoundingClientRect();
+    if (!rect) return;
 
-  // Výpočet výšky čáry jako procento
-  const lineHeight = Math.min(currentScroll / totalScroll, 1) * 100;
+    const windowHeight = window.innerHeight;
+    const scrollTop = window.scrollY || window.pageYOffset;
+    const elementTop = scrollTop + rect.top;
+    const elementBottom = scrollTop + rect.bottom;
+    const totalScroll = elementBottom - elementTop;
+    const currentScroll = scrollTop + windowHeight - elementTop;
+    const lineHeight = Math.min(currentScroll / totalScroll, 1) * 100;
 
-  // Nastavení výšky čáry jen pokud je viditelná v okně
-  if (rect.top < windowHeight && rect.bottom > 0) {
-    line.style.height = `${lineHeight}%`;
-  } else if (rect.top >= windowHeight) {
-    line.style.height = `0%`;
-  } else if (rect.bottom <= 0) {
-    line.style.height = `100%`;
-  }
+    if (rect.top < windowHeight && rect.bottom > 0) {
+      line.style.height = `${lineHeight}%`;
+    } else if (rect.top >= windowHeight) {
+      line.style.height = `0%`;
+    } else if (rect.bottom <= 0) {
+      line.style.height = `100%`;
+    }
 
-  // Zobrazení teček (s animací) podle toho, kde je čára
-  dots.forEach(dot => {
-    const dotRect = dot.getBoundingClientRect();
-    const dotTop = dotRect.top + scrollTop;
-    const dotRelative = dotTop - elementTop;
-    const dotPercent = (dotRelative / totalScroll) * 100;
+    dots.forEach((dot) => {
+      const dotRect = dot.getBoundingClientRect();
+      const dotTop = dotRect.top + scrollTop;
+      const dotRelative = dotTop - elementTop;
+      const dotPercent = (dotRelative / totalScroll) * 100;
 
-    if (dotPercent <= lineHeight) {
-      // Pokud je tečka v oblasti pod čárou a není ještě viditelná
-      if (!dot.classList.contains('visible')) {
-        dot.classList.add('visible');
-
-        // Reset animace záblesku
-        dot.style.animation = 'none';
-        dot.offsetHeight; // force reflow
-        dot.style.animation = '';
+      if (dotPercent <= lineHeight) {
+        if (!dot.classList.contains("visible")) {
+          dot.classList.add("visible");
+          dot.style.animation = "none";
+          dot.offsetHeight;
+          dot.style.animation = "";
+        }
+      } else {
+        dot.classList.remove("visible");
       }
-    } else {
-      // Pokud čára nedosáhla k tečce – schovej ji
-      dot.classList.remove('visible');
-    }
-  });
+    });
 
-  // Zobrazení malého loga a názvu na mobilních zařízeních
-  if (window.innerWidth <= 800) {
-    if (scrollTop > 50) {
-      logo?.classList.add("hidden");         // Skryj velké logo
-      logoS?.classList.add("visible");       // Zobraz malé logo
-      titleS?.classList.add("visible");      // Zobraz název
-    } else {
-      logo?.classList.remove("hidden");      // Zobraz zpět velké logo
-      logoS?.classList.remove("visible");    // Skryj malé logo
-      titleS?.classList.remove("visible");   // Skryj název
+    if (window.innerWidth <= 800) {
+      if (scrollTop > 50) {
+        logo?.classList.add("hidden");
+        logoS?.classList.add("visible");
+        titleS?.classList.add("visible");
+      } else {
+        logo?.classList.remove("hidden");
+        logoS?.classList.remove("visible");
+        titleS?.classList.remove("visible");
+      }
     }
   }
-}
 
-// Přidání posluchačů na scroll a resize
-window.addEventListener('scroll', onScroll);
-window.addEventListener('resize', onScroll);
-onScroll(); // Spuštění hned po načtení pro správný stav
+  window.addEventListener("scroll", onScroll);
+  window.addEventListener("resize", onScroll);
+  onScroll();
+
+  // Galerie – šipky a swipe
+  let aktivniIndex = 0;
+  const obrazky = document.querySelectorAll(".galerie-img");
+  const wrapperGalerie = document.getElementById("galerie-obrazky");
+
+  if (obrazky.length && wrapperGalerie) {
+    function posunGalerii(smer) {
+      obrazky[aktivniIndex].classList.remove("active");
+      aktivniIndex = (aktivniIndex + smer + obrazky.length) % obrazky.length;
+      obrazky[aktivniIndex].classList.add("active");
+      vystredObrazek(obrazky[aktivniIndex]);
+    }
+
+    function vystredObrazek(img) {
+      const rect = img.getBoundingClientRect();
+      const wrapperRect = wrapperGalerie.getBoundingClientRect();
+      const scrollLeft =
+        wrapperGalerie.scrollLeft +
+        (rect.left + rect.width / 2) -
+        (wrapperRect.left + wrapperRect.width / 2);
+      wrapperGalerie.scrollTo({ left: scrollLeft, behavior: "smooth" });
+    }
+
+    let startX = 0;
+    wrapperGalerie.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+    });
+    wrapperGalerie.addEventListener("touchend", (e) => {
+      const endX = e.changedTouches[0].clientX;
+      if (endX - startX > 50) posunGalerii(-1);
+      else if (startX - endX > 50) posunGalerii(1);
+    });
+  }
+});

@@ -24,10 +24,10 @@
       <div class="full">
         <a href="aktuality.html">aktuality</a>
         <a href="#intro">úvodem</a>
-        <a href="#offer">nabízím</a>
-        <a href="#contact" data-key="contact">kontakt</a>
+        <a href="#offer">nabízím</a>              
         <a href="#galery" data-key="galery">galerie</a>
-        <a href="#reference" data-key="reference">reference</a>
+        <a href="#reference" data-key="cenik">ceník</a> 
+        <a href="#contact" data-key="contact">kontakt</a>
 
        <!-- <button class="english">
           <img src="/img/eng.png" />
@@ -37,19 +37,25 @@
       <div class="navigace small hidden" id="menu">
         <ul class="nav">
           <li class="nav-item">
+            <a class="nav-link" href="aktuality.html">aktuality</a>
+          </li>
+          <li class="free"></li>
+          <li class="nav-item">
             <a class="nav-link" href="#intro">úvodem</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#offer">nabízím</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contact">kontakt</a>
-          </li>
+         
           <li class="nav-item">
             <a class="nav-link" href="#galery">galerie</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#reference" data-key="">reference</a>
+            <a class="nav-link" href="#cenik">ceník</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">kontakt</a>
           </li>
           <li class="free"></li>
 
@@ -76,7 +82,7 @@
       </div>
     </div>
     
-    <div class="container">
+  <div class="container">
 
     <div class="pozadi">
       <div class="nadpis">
@@ -164,7 +170,20 @@
        
     </div>
 
-    <div class="interval3" id="offer"></div>
+    <div class="interval3" id=""></div>
+    
+    <div class="galerie" id="galerie">
+      <button class="arrow left" onclick="posunGalerii(-1)">&#8592;</button>
+      <div class="galerie-obrazky" id="galerie-obrazky">
+        <a href="fotogalerie.html"><img src="/img/ruka.jpg" class="galerie-img active" /></a>
+        <a href="fotogalerie.html"><img src="/img/kura.jpg" class="galerie-img" /></a>
+        <a href="fotogalerie.html"><img src="/img/noha.jpg" class="galerie-img" /></a>
+        <a href="fotogalerie.html"><img src="/img/zada.jpg" class="galerie-img" /></a>
+      </div>
+      <button class="arrow right" onclick="posunGalerii(1)">&#8594;</button>
+    </div>
+      <div class="interval4"></div>
+    
   </div>
   
   </div>
