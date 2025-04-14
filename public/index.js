@@ -67,6 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    //logo a nazev do titulku
+
     if (window.innerWidth <= 800) {
       if (scrollTop > 50) {
         logo?.classList.add("hidden");

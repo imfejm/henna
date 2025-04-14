@@ -66,9 +66,11 @@ body {
     "uvodem"
     "interval2"
     "nabizim"
-    "interval3";
+    "interval3"
+    "galerie"
+    "interval4";
   grid-template-columns: 1fr;
-  grid-template-rows: auto 60px auto 60px auto 60px;
+  grid-template-rows: auto 60px auto 60px auto 60px auto 60px;
   padding-top: 60px;
   align-items: center;
 
@@ -82,7 +84,7 @@ body {
 }
 @media only screen and (min-width: 800px) {
   .container {
-    grid-template-rows: auto 60px auto 60px auto 60px;
+    grid-template-rows: auto 60px auto 60px auto 60px auto 60px;
   }
   body {
     font-size: 22px;
@@ -761,61 +763,90 @@ h2 {
   display: block;
   text-decoration: none;
 }
-
 .galerie {
+  grid-area: galerie;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   position: relative;
   overflow: hidden;
 }
-
 .arrow {
   background: none;
+  color: #13b5a8;
   border: none;
   font-size: 2rem;
   cursor: pointer;
   z-index: 10;
 }
-
 .galerie-obrazky {
   display: flex;
   gap: 2rem;
   transition: transform 0.3s ease;
 }
 
-.galerie-img {
-  width: 250px;
-  height: auto;
-  opacity: 0.4;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  flex-shrink: 0;
-  border: 3px solid #13b5a8;
-}
-
 .galerie-img.active {
   opacity: 1;
   transform: scale(1.05);
+  border: 3px solid #13b5a8;
 }
 
-@media (max-width: 767px) {
-  .galerie-obrazky {
-    overflow-x: scroll;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
+.galerie-obrazky {
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
 
-  .galerie-obrazky a {
-    scroll-snap-align: center;
-    flex-shrink: 0;
-    width: 100vw;
-  }
+.galerie-obrazky a {
+  scroll-snap-align: center;
+  flex-shrink: 0;
+  width: 100vw;
+  padding: 0 10px; /* prostor kolem obrázku */
+}
 
+.galerie-img {
+  width: 200px;
+  max-width: 100%;
+  border: 3px solid #13b5a8;
+  box-sizing: border-box; /* <== přidáno */
+  margin: 0 auto;
+}
+
+@media (min-width: 800px) {
+  .galerie {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
   .galerie-img {
-    width: 80vw;
+    width: 250px;
     height: auto;
-    max-width: 100%;
+    opacity: 0.4;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    flex-shrink: 0;
+    border: 3px solid #13b5a8;
   }
+  .galerie-obrazky {
+    overflow: hidden; /* <== Skryje posuvníky */
+  }
+
+  .galerie-img.active {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  .look {
+    text-decoration: none;
+  }
+}
+.look {
+  padding: 0 4%;
+  text-align: center;
+  text-decoration: none;
 }
