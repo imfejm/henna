@@ -10,7 +10,7 @@ fetch("/api/posts")
       return;
     }
 
-    data.reverse().forEach((post) => {
+    data.forEach((post) => {
       const item = document.createElement("div");
       item.classList.add("aktualita");
 
