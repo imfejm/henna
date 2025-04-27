@@ -502,12 +502,12 @@ h2 {
 }
 .terka {
   width: 40vw;
-  border-radius: 40%;
-  padding: 0 4% 4% 4%;
+  border-radius: 70px;
+  padding: 2%;
   float: left;
 }
 .uvodem p {
-  padding: 0 4% 2% 4%;
+  padding: 0 4% 4% 8%;
   line-height: 1.3;
   margin: 0;
 }
@@ -779,6 +779,7 @@ h2 {
   gap: 1rem;
   position: relative;
   overflow: hidden;
+  padding-top: 2%;
 }
 .arrow {
   background: none;
@@ -868,6 +869,7 @@ h2 {
   row-gap: 2rem;
   width: 90%;
   padding: 4%;
+  justify-self: center;
 }
 .ref1,
 .ref2,
@@ -877,6 +879,7 @@ h2 {
   padding: 4%;
   border-radius: 20px;
   border: 3px solid #baa360;
+  box-shadow: 2px 4px 10px #13b5a851;
 }
 .reference p {
   line-height: 1.3;
