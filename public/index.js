@@ -125,3 +125,16 @@ document.addEventListener("DOMContentLoaded", () => {
   sipkaVlevo?.addEventListener("click", () => posunGalerii(-1));
   sipkaVpravo?.addEventListener("click", () => posunGalerii(1));
 });
+
+const reference = document.getElementById("reference");
+const toggleButton = document.getElementById("toggleButton");
+
+toggleButton.addEventListener("click", function () {
+  reference.classList.toggle("expanded");
+
+  if (reference.classList.contains("expanded")) {
+    toggleButton.textContent = "↑ méně";
+  } else {
+    toggleButton.textContent = "↓ přečti si více recenzí";
+  }
+});
