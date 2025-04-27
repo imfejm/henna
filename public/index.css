@@ -68,12 +68,12 @@ body {
     "nabizim"
     "interval3"
     "galerie"
-    "interval4";
+    "interval4"
+    "reference";
   grid-template-columns: 1fr;
-  grid-template-rows: auto 60px auto 60px auto 60px auto 60px;
+  grid-template-rows: auto 60px auto 60px auto 60px auto 60px auto;
   padding-top: 60px;
   align-items: center;
-
   position: relative;
   max-width: 1300px; /* Nastaví maximální šířku webu */
 }
@@ -84,7 +84,7 @@ body {
 }
 @media only screen and (min-width: 800px) {
   .container {
-    grid-template-rows: auto 60px auto 60px auto 60px auto 60px;
+    grid-template-rows: auto 60px auto 60px auto 60px auto 60px auto;
   }
   body {
     font-size: 22px;
@@ -554,6 +554,7 @@ h2 {
       #13b5a8
     );
     transition: height 0.3s ease-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
 
   .timeline-item {
@@ -598,12 +599,14 @@ h2 {
     border-radius: 3px 30px 3px 30px;
     max-width: 100%;
     height: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
 
   .tehu {
     border-radius: 30px 3px 30px 3px;
     max-width: 100%;
     height: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
 
   .dot {
@@ -646,6 +649,7 @@ h2 {
   .festival,
   .barva {
     border-radius: 3px 30px 3px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
   .tehu {
     border-radius: 30px 3px 30px 3px;
@@ -653,6 +657,7 @@ h2 {
     height: auto;
     display: block;
     margin-left: auto; /* zarovná doprava uvnitř .content */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
   .timeline {
     position: relative; /* DŮLEŽITÉ – aby line-wrapper měl k čemu být absolutní */
@@ -687,6 +692,7 @@ h2 {
     );
     transition: height 0.3s ease-out;
     z-index: 2;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
 
   .timeline-item {
@@ -704,6 +710,7 @@ h2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
 
   .timeline-item.left,
@@ -832,6 +839,7 @@ h2 {
     transition: opacity 0.3s ease, transform 0.3s ease;
     flex-shrink: 0;
     border: 3px solid #13b5a8;
+    border-radius: 20px;
   }
   .galerie-obrazky {
     overflow: hidden; /* <== Skryje posuvníky */
@@ -849,4 +857,59 @@ h2 {
   padding: 0 4%;
   text-align: center;
   text-decoration: none;
+}
+
+.reference {
+  grid-area: reference;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  row-gap: 2rem;
+  width: 90%;
+  padding: 4%;
+}
+.ref1,
+.ref2,
+.ref3 {
+  font-size: 16px;
+  width: 100%;
+  padding: 4%;
+  border-radius: 20px;
+  border: 3px solid #baa360;
+}
+.reference p {
+  line-height: 1.3;
+}
+
+.name {
+  font-style: italic;
+}
+@media (min-width: 800px) {
+  .reference {
+    grid-area: reference;
+    display: grid;
+    grid-template-columns: 35% 4fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    justify-self: center;
+  }
+  .ref1 {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    min-height: 100%;
+    box-shadow: 2px 4px 10px #13b5a851;
+    padding-top: 25%;
+  }
+
+  .ref2 {
+    grid-column: 2;
+    grid-row: 1;
+    box-shadow: 2px 4px 10px #13b5a851;
+  }
+  .ref3 {
+    grid-column: 2;
+    grid-row: 2;
+    box-shadow: 2px 4px 10px #13b5a851;
+  }
 }
