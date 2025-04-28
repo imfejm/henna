@@ -187,30 +187,59 @@
       <a href="fotogalerie.html" class="look">
       <p>Podívej se sem, co vše si můžeš nechat pomalovat &#8594; </p></a>
     </div>
- 
-   <div class="reference" id="reference">
-      <div class="ref1">
-        <p>Terku můžu ze srdce doporučit. Je to balzám sledovat, jak se její zkušená ruka rozběhne po té mojí a jak vziká nádherný vzor přesně mně na míru.</p> <p>Jde cítit, že je to její srdeční záležitost, a pokud se chcete jen tak ozdobit nebo se nechat hennou podpořit v hlubším záměru, vřele doporučuji návštěvu právě u Terky. </p><p>Moc ti děkuji za opečovanou pravačku a snad zase brzy na malovanou...</p>
-        </p>
-        <p class="name">Eva Danael Potempová</p>
+    <div class="recenze">
+      <div class="reference" id="reference">
+        <div class="ref1">
+          <p>Terku můžu ze srdce doporučit. Je to balzám sledovat, jak se její zkušená ruka rozběhne po té mojí a jak vziká nádherný vzor přesně mně na míru.</p> <p>Jde cítit, že je to její srdeční záležitost, a pokud se chcete jen tak ozdobit nebo se nechat hennou podpořit v hlubším záměru, vřele doporučuji návštěvu právě u Terky. </p><p>Moc ti děkuji za opečovanou pravačku a snad zase brzy na malovanou...</p>
+          </p>
+          <p class="name">Eva Danael Potempová</p>
+        </div>
+        <div class="ref2">
+          <p>Těším se, až mě budeš opět malovat. Obrázek stále mám a dělá mi moc dobře. Cítím se nazdobeně, krásně, povzneseně.</p>
+          <p class="name">Valerie Azima</p>
+        </div>
+        <div class="ref3">
+          <p>Když Terka maluje hennu, je v tom doopravdy trocha magie. V poslední době mi malovala dva velké obrázky - jeden se sdílením jako podporu při životním rozhodnutí.
+          </p>
+          <p>Druhý s odstupem času a bez zadání - dokonalá kombinace něhy a psychedelie - nic takovéto bych si vědomě nikdy namalovat nenechala a byl z toho dokonalý odraz mého aktuálního vnitřního světa.
+          </p>
+          <p>Kromě toho, že je henna od Terky nádherná ozdoba těla, může být i rituálem a podpůrným ženským setkaním. Ze srdce doporučuji ❤️
+          </p>
+          <p class="name">Katka Hasáková</p>
+        </div>      
       </div>
-      <div class="ref2">
-        <p>Těším se, až mě budeš opět malovat. Obrázek stále mám a dělá mi moc dobře. Cítím se nazdobeně, krásně, povzneseně.</p>
-        <p class="name">Valerie Azima</p>
-      </div>
-      <div class="ref3">
-        <p>Když Terka maluje hennu, je v tom doopravdy trocha magie. V poslední době mi malovala dva velké obrázky - jeden se sdílením jako podporu při životním rozhodnutí.
-        </p>
-        <p>Druhý s odstupem času a bez zadání - dokonalá kombinace něhy a psychedelie - nic takovéto bych si vědomě nikdy namalovat nenechala a byl z toho dokonalý odraz mého aktuálního vnitřního světa.
-        </p>
-        <p>Kromě toho, že je henna od Terky nádherná ozdoba těla, může být i rituálem a podpůrným ženským setkaním. Ze srdce doporučuji ❤️
-        </p>
-        <p class="name">Katka Hasáková</p>
-      </div>
-      
+      <button id="toggleButton">↓ přečti si více recenzí</button>
     </div>
-    <button id="toggleButton">↓ přečti si více recenzí</button>
     <div class="interval4"></div>
+    <div class="kontakt">
+      <div class="formular">
+        <form class="forms" id="contact-form">
+         <label for="name">Vaše jméno:</label>
+         <input type="text" id="name" name="name" required />
+    
+          <label for="date">Termín:</label>
+          <input type="date" id="date" name="date" required />
+
+          <label for="date">Kde:</label>
+          <input type="text" id="where" name="where" required />
+    
+          <label for="email">Váš e-mail, kam mohu odepsat:</label>
+          <input type="email" id="email" name="reply_to" required />
+    
+          <label for="phoneNumber">Vaše telefonní číslo:</label>
+          <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[+0-9]{9,15}" required />
+    
+          <label for="message">Zpráva:</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+    
+          <!-- Honeypot input (skrytý, roboti ho vyplní) -->
+          <input type="text" id="honeypot" name="honeypot" style="display: none" aria-hidden="true" />
+
+        
+          <button type="submit">Odeslat</button>
+        </form>
+      </div> 
+    </div>
     
     
    </div>

@@ -126,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
   sipkaVpravo?.addEventListener("click", () => posunGalerii(1));
 });
 
+//rozkliknuti recenzi
 const reference = document.getElementById("reference");
 const toggleButton = document.getElementById("toggleButton");
 

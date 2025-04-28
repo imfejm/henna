@@ -68,10 +68,11 @@ body {
     "nabizim"
     "interval3"
     "galerie"
-    "reference"
-    "interval4";
+    "recenze"
+    "interval4"
+    "kontakt";
   grid-template-columns: 1fr;
-  grid-template-rows: auto 60px auto 60px auto 60px auto auto 60px;
+  grid-template-rows: auto 60px auto 60px auto 60px auto auto 60px auto;
   padding-top: 60px;
   align-items: center;
   position: relative;
@@ -84,7 +85,7 @@ body {
 }
 @media only screen and (min-width: 800px) {
   .container {
-    grid-template-rows: auto 60px auto 60px auto 60px auto auto 60px;
+    grid-template-rows: auto 60px auto 60px auto 60px auto auto 60px auto;
   }
   body {
     font-size: 22px;
@@ -860,13 +861,16 @@ h2 {
   text-decoration: none;
 }
 
-.reference {
-  grid-area: reference;
+/*recenze*/
+.recenze {
+  grid-area: recenze;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
+  justify-content: center;
   row-gap: 2rem;
+}
+.reference {
   width: 90%;
   padding: 4%;
   justify-self: center;
@@ -897,7 +901,7 @@ h2 {
 }
 
 #toggleButton {
-  margin: 1rem;
+  width: 84%;
   padding: 10px 20px;
   background-color: #baa360;
   color: white;
@@ -912,6 +916,10 @@ h2 {
   background-color: #baa360;
 }
 @media (min-width: 800px) {
+  .recenze {
+    justify-self: center;
+  }
+
   .reference {
     grid-area: reference;
     display: grid;
@@ -940,6 +948,69 @@ h2 {
   }
 }
 
-.interval5 {
+/*kontaktni formular*/
+.interval4 {
+  grid-area: interval4;
   height: 60px;
+}
+
+.kontakt {
+  grid-area: kontakt;
+  width: 100vw;
+  background-color: #baa360;
+  justify-self: center;
+}
+.formular {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.forms {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 400;
+}
+
+.forms label {
+  margin-top: 13px; /* Mezera nad popisky */
+  display: block; /* Každý popisek na nový řádek */
+  padding: 15px;
+  margin: 0 auto;
+  justify-self: center;
+}
+
+.forms input,
+textarea {
+  width: 90%; /* Zajistí, že vstupy budou stejně široké jako formulář */
+  background-color: #f7f1de;
+  border-style: none;
+  box-shadow: 0 2px 5px #13b5a834;
+  height: 50px;
+  font-size: 18px;
+  padding: 1rem;
+  justify-self: center;
+}
+
+.forms textarea {
+  height: 120px; /* Větší výška pro textovou oblast */
+  resize: vertical; /* Umožní změnu velikosti jen vertikálně */
+  margin-bottom: 5%;
+  justify-self: center;
+}
+
+.forms button {
+  display: block;
+  background-color: #13b5a892;
+  width: 4rem;
+  aspect-ratio: 1/1;
+  border-radius: 20%;
+  margin: 3% auto;
+  justify-self: center;
+  color: white;
+  border-color: #cabd98 ;
 }
