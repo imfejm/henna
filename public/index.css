@@ -70,9 +70,11 @@ body {
     "galerie"
     "recenze"
     "interval4"
+    "cenik"
+    "interval5"
     "kontakt";
   grid-template-columns: 1fr;
-  grid-template-rows: auto 60px auto 60px auto 60px auto auto 60px auto;
+  grid-template-rows: auto 60px auto 60px auto 60px auto auto 60px auto 60px auto;
   padding-top: 60px;
   align-items: center;
   position: relative;
@@ -85,7 +87,7 @@ body {
 }
 @media only screen and (min-width: 800px) {
   .container {
-    grid-template-rows: auto 60px auto 60px auto 60px auto auto 60px auto;
+    grid-template-rows: auto 60px auto 60px auto 60px auto auto 60px auto 60px auto;
   }
   body {
     font-size: 22px;
@@ -502,7 +504,7 @@ h2 {
   justify-content: center;
 }
 .terka {
-  width: 40vw;
+  width: 50vw;
   border-radius: 30px;
   padding: 2% 4% 2% 4%;
   float: left;
@@ -947,10 +949,21 @@ h2 {
     box-shadow: 2px 4px 10px #13b5a851;
   }
 }
-
-/*kontaktni formular*/
+/*cenik*/
 .interval4 {
   grid-area: interval4;
+  height: 60px;
+}
+.cenik {
+  background-color: #13b5a8;
+  width: 80vw;
+  height: 40vh;
+  justify-self: center;
+}
+
+/*kontaktni formular*/
+.interval5 {
+  grid-area: interval5;
   height: 60px;
 }
 
@@ -1012,5 +1025,5 @@ textarea {
   margin: 3% auto;
   justify-self: center;
   color: white;
-  border-color: #cabd98 ;
+  border-color: #cabd98;
 }
